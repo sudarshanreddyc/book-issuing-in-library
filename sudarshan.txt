@@ -207,7 +207,7 @@ void teacher(int k1)
         exit(0);
         break;
   default:
-        printf("enter correct choice");
+        printf("please enter correct choice");
    }
   }
  }
@@ -269,7 +269,7 @@ void studentteacherqueue()
 {
  if(start==NULL)
  {
-  printf("\n no process has started yet");
+  printf("\n no one has processed yet");
  }
  struct node *p=start;
  while(p!=NULL)
