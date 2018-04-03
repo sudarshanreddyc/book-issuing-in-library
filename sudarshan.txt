@@ -1,0 +1,318 @@
+#include<stdio.h>
+#include<pthread.h>
+#include<stdlib.h>
+#include<unistd.h>
+#include<malloc.h>
+struct node
+{
+ int info;
+ char name[100];
+ struct node *link;
+};
+int count=0,count1=0,count2=0;
+struct node *start=NULL,*f1=NULL,*r1=NULL,*f2=NULL,*r2=NULL,*t5,*t6;
+void student(int k)
+{
+ if(k==0)
+ {
+  int s;
+  printf("\n enter no of students");
+  scanf("\n%d",&s);
+  int id1;
+  for(int i=0;i<s;i++)
+  {
+   printf("\nenter 4 digit student %d unique id",i);
+   scanf("%d",&id1);
+   struct node *t;
+   t=(struct node*)malloc(sizeof(struct node));
+   t->info=id1;
+   if(f1==NULL)
+   {
+    t->link=NULL;
+    f1=t;
+    r1=t;
+   }
+   r1->link=t;
+   r1=t;
+   t->link=NULL;
+  }
+  student(1);
+ }
+ else
+ {
+  while(f1!=NULL)
+  {
+   if(count1!=0)
+   {
+    printf("\n student with id %d has been processed",t5->info);
+   }
+   if(f2==NULL)
+   {
+    t5=(struct node*)malloc(sizeof(struct node));
+    t5->info=f1->info;
+    if(start==NULL)
+    {
+     start=t5;
+     t5->link=NULL;
+    }
+    else
+    {
+     struct node *p;
+     p=start;
+     while(p->link!=NULL)
+     {
+      p=p->link;
+     }
+     p->link=t5;
+     t5->link=NULL;
+    }
+    printf("\nstudent with id %d is processing",f1->info);
+    count1++;
+    f1=f1->link;
+    int ch;
+    printf("\n press 0 if students are coming");
+    printf("\n press 1 if teachers are coming");
+    printf("\n press 2 if both are coming");
+    printf("\n press 3  if nobody is coming");
+    printf("\n press 4 to check processed processess");
+    printf("\n press 5 for exit");
+    scanf("\n%d",&ch);
+    switch(ch)
+    {
+    case 0:
+	student(0);
+	break;
+    case 1:
+ 	teacher(0);
+	break;
+    case 2:
+	both();
+	break;
+    case 3:
+	break;
+    case 4:
+	studentteacherqueue();
+	break;
+    case 5:
+	printf("\n student with id %d has been processed",t5->info);
+	printf("\nprocessed processess are\n");
+	studentteacherqueue();
+	exit(0);
+	break;
+    default:
+ 	printf("enter correct choice");
+   }
+  }
+  else
+  {
+   teacher(1);
+  }
+ }
+ if(f1==NULL)
+ {
+  printf("\n student with id %d has been processed",t5->info);
+  printf("\n no students to process");
+  count1=0;
+  printf("\n processed processess are\n");
+  studentteacherqueue();
+  exit(0);
+ }
+}
+}
+void teacher(int k1)
+{
+ if(k1==0)
+ {
+ int no;
+ printf("\n enter no of teachers");
+ scanf("\n%d",&no);
+ int id2;
+ for(int i=0;i<no;i++)
+ {
+  printf("\n enter 2 digit teacher %d unique id",i);
+  scanf("\n%d",&id2);
+  struct node *t1;
+  t1=(struct node*)malloc(sizeof(struct node));
+  t1->info=id2;
+  if(f2==NULL)
+  {
+   t1->link=NULL;
+   f2=t1;
+   r2=t1;
+  }
+  r2->link=t1;
+  r2=t1;
+  t1->link=NULL;
+ }
+ teacher(1);
+ }
+ else
+ {
+  while(f2!=NULL)
+  {
+   if(count!=0)
+   {
+    printf("\n teacher with id %d has been processed",t6->info);
+    count2++;
+   }
+   count++;
+   printf("\n teacher with id %d is processing",f2->info);
+   t6=(struct node*)malloc(sizeof(struct node));
+   t6->info=f2->info;
+   if(start==NULL)
+   {
+    start=t6;
+    t6->link=NULL;
+   }
+   else
+   {
+    struct node *p;
+    p=start;
+    while(p->link!=NULL)
+    {
+     p=p->link;
+    }
+    p->link=t6;
+    t6->link=NULL;
+   }
+  f2=f2->link;
+  int ch;
+  printf("\n press 0 if students are coming");   
+  printf("\n press 1 if teachers are coming");
+  printf("\n press 2 if both are coming");
+  printf("\n press 3 if nobody is coming");
+  printf("\n press 4 to check processed processess");
+  printf("\n press 5 for exit");
+  scanf("\n%d",&ch);
+  switch(ch)
+  {
+  case 0:
+        student(0);
+        break;
+  case 1:
+	teacher(0);
+        break;
+  case 2:
+        both();
+        break;
+  case 3:
+	break;
+  case 4:
+	studentteacherqueue();
+	break;
+  case 5:
+	printf("\nteacher with id %d has been processed",t6->info);
+	printf("\nprocessed processess are\n");
+	studentteacherqueue();
+        exit(0);
+        break;
+  default:
+        printf("enter correct choice");
+   }
+  }
+ }
+ if(f2==NULL)
+ {
+  printf("\n teacher with id %d has been processed",t6->info);
+  printf("\n no teachers to process\n");
+  count=0;
+  if(f1==NULL)
+  {
+   studentteacherqueue();
+   exit(0);
+  }
+ }
+}
+void both()
+{
+ int id1,id2,s,no1;
+ printf("\n enter no of students followed by no of teachers");
+ scanf("\n%d %d",&s,&no1);
+ for(int i=0;i<s;i++)
+ {
+  printf("\nenter 4 digit student %d unique id",i);
+  scanf("\n%d",&id1);
+  struct node *t2;
+  t2=(struct node*)malloc(sizeof(struct node));
+  t2->info=id1;
+  if(f1==NULL)
+  {
+   t2->link=NULL;
+   f1=t2;
+   r1=t2;
+  }
+  r1->link=t2;
+  r1=t2;
+  t2->link=NULL;
+ }
+ for(int i=0;i<no1;i++)
+ {
+  printf("\n enter 2 digit teacher %d unique id",i);
+  scanf("\n%d",&id2);
+  struct node* t3;
+  t3=(struct node*)malloc(sizeof(struct node));
+  t3->info=id2;
+  if(f2==NULL)
+  {
+   t3->link=NULL;
+   f2=t3;
+   r2=t3;
+  }
+ r2->link=t3;
+ r2=t3;
+ t3->link=NULL;
+ }
+ student(1);
+ teacher(1);
+ }
+void studentteacherqueue()
+{
+ if(start==NULL)
+ {
+  printf("\n no process has started yet");
+ }
+ struct node *p=start;
+ while(p!=NULL)
+ {
+  printf("%d ",p->info);
+  p=p->link;
+ }
+}
+int main()
+{
+ pthread_t t1;
+ pthread_t t2;
+ pthread_t t3;
+ pthread_t t4;
+ char ch;
+ printf("enter your choice");
+ A:
+        printf("\npress 1 if students are coming");
+        printf("\npress 2 if teachers are coming");
+        printf("\npress 3 if both are coming at the same time");
+        printf("\npress 4 to exit\n");
+ scanf("\n%d",&ch);
+ int k=0,k1=0;
+ switch(ch)
+ {
+ case 1:
+        pthread_create(&t1,NULL,student,0);
+        pthread_join(t1,NULL);
+        goto A;
+        break;
+ case 2:
+        pthread_create(&t2,NULL,teacher,0);
+        pthread_join(t2,NULL);
+        goto A;
+        break;
+ case 3:
+        pthread_create(&t3,NULL,both,0);
+	pthread_join(t3,NULL);
+ case 4:
+	studentteacherqueue();
+        exit(0);
+ default:
+        printf("\n enter correct choice");
+ }
+ studentteacherqueue();
+}
