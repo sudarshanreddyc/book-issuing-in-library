@@ -74,7 +74,7 @@ void student(int k)
 				printf("\n press 1 if teachers are coming");
 				printf("\n press 2 if both are coming");
 				printf("\n press 3  if nobody is coming");
-				printf("\n press 4 to check processed processess");
+				printf("\n press 4 to check processed processes");
 				printf("\n press 5 for exit\n");
 				scanf("\n%d",&ch);
 				switch(ch)
@@ -99,7 +99,7 @@ void student(int k)
 						break;
 					case 5:
 						printf("\n student with id %d has been processed",t5->info);
-						printf("\nprocessed processess are\n");
+						printf("\nprocessed processes are\n");
 						studentteacherqueue();
 						exit(0);
 						break;
@@ -117,7 +117,7 @@ void student(int k)
 			printf("\n student with id %d has been processed",t5->info);
 			printf("\n no students to process");
 			count1=0;
-			printf("\n processed processess are\n");
+			printf("\n processed processes are\n");
 			studentteacherqueue();
 			exit(0);
 		}
@@ -189,7 +189,7 @@ void teacher(int k1)
 			printf("\n press 1 if teachers are coming");
 			printf("\n press 2 if both are coming");
 			printf("\n press 3 if nobody is coming");
-			printf("\n press 4 to check processed processess");
+			printf("\n press 4 to check processed processes");
 			printf("\n press 5 for exit\n");
 			scanf("\n%d",&ch);
 			switch(ch)
